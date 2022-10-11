@@ -7,6 +7,12 @@ How to create a crud app to consume an api.
 #### Package link: 
 https://pub.dev/packages/http
 
+#### Docs networking: 
+https://docs.flutter.dev/cookbook/networking/fetch-data
+https://docs.flutter.dev/cookbook/networking/send-data
+https://docs.flutter.dev/cookbook/networking/update-data
+https://docs.flutter.dev/cookbook/networking/delete-data
+
 #### API link: 
 https://63403f2ae44b83bc73cca5b7.mockapi.io/person
 
