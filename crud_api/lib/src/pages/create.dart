@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-// API
-import 'package:crud_api/src/services/http.dart';
+import 'package:crud_api/src/data/services/api.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({Key? key}) : super(key: key);
@@ -26,7 +24,8 @@ class _CreatePageState extends State<CreatePage> {
           }, // <-- SEE HERE
         ),
         centerTitle: true,
-        title: const Text('Create'),
+        title: const Text('Create Data'),
+        backgroundColor: Colors.deepPurple[300],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -59,20 +58,34 @@ class _CreatePageState extends State<CreatePage> {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                bool response = await httpResponse.createData(
-                    firstNameController.text,
-                    lastNameController.text,
-                    messageController.text);
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      bool response = await httpResponse.createData(
+                          firstNameController.text,
+                          lastNameController.text,
+                          messageController.text);
 
-                if (response) {
-                  Navigator.popAndPushNamed(context, 'home');
-                } else {
-                  throw Exception('Failed to create data.');
-                }
-              },
-              child: const Text('Submit'),
+                      if (response) {
+                        Navigator.popAndPushNamed(context, 'home');
+                      } else {
+                        throw Exception('Failed to create data.');
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurple[300]),
+                      padding:
+                          MaterialStateProperty.all(const EdgeInsets.all(15)),
+                      textStyle: MaterialStateProperty.all(
+                          const TextStyle(fontSize: 20)),
+                    ),
+                    child: const Text('Submit'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-// API
-import 'package:crud_api/src/services/http.dart';
+import 'package:crud_api/src/data/services/api.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({Key? key}) : super(key: key);
@@ -33,10 +31,11 @@ class _UpdatePageState extends State<UpdatePage> {
           color: Colors.white,
           onPressed: () {
             Navigator.popAndPushNamed(context, 'home');
-          }, // <-- SEE HERE
+          },
         ),
         centerTitle: true,
-        title: const Text('Update'),
+        title: const Text('Update Data'),
+        backgroundColor: Colors.deepPurple[300],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -69,21 +68,35 @@ class _UpdatePageState extends State<UpdatePage> {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                bool response = await httpResponse.updateData(
-                    args[0],
-                    firstNameController.text,
-                    lastNameController.text,
-                    messageController.text);
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      bool response = await httpResponse.updateData(
+                          args[0],
+                          firstNameController.text,
+                          lastNameController.text,
+                          messageController.text);
 
-                if (response) {
-                  Navigator.popAndPushNamed(context, 'home');
-                } else {
-                  throw Exception('Failed to update data.');
-                }
-              },
-              child: const Text('Update'),
+                      if (response) {
+                        Navigator.popAndPushNamed(context, 'home');
+                      } else {
+                        throw Exception('Failed to update data.');
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.deepPurple[300]),
+                      padding:
+                          MaterialStateProperty.all(const EdgeInsets.all(15)),
+                      textStyle: MaterialStateProperty.all(
+                          const TextStyle(fontSize: 20)),
+                    ),
+                    child: const Text('Update'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
