@@ -1,5 +1,5 @@
-# Flutter Crud api
-How to create a crud app to consume an api.
+# Flutter Crud API
+How to create a crud app to consume an API.
 
 ### Type this command to install the Http package
 > flutter pub add http
